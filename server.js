@@ -1,47 +1,39 @@
 const express = require("express");
-const expresshdbrs = require("express-handlebars");
 const mongoose = require("mongoose");
 const logger = require("morgan");
-const path = require("path");
 const bodyParser = require("body-parser");
-const cheerio = require("cheerio");
-const axios = require("axios");
+const exhdbrs = require("express-handlebars");
+const _handlebars = require("handlebars");
+const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access');
 
-let Article = require("./models/Article");
-let Comment = require("./models/Comment");
-
-let db = mongoose.connection;
 
 let PORT = process.env.PORT || 3000;
+let MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/Scraping-The-News';
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+// initialize express
+const app = express();
 
-// Initialize Express
-let app = express();
-
-// Use morgan logger for logging requests
+// use morgan logger for logging requests
 app.use(logger("dev"));
-// Parse request body as JSON
-app.use(bodyParser.urlencoded({ extended: false }));
-// Make public a static folder
+// use body-parser for handling form submissions
+app.use(bodyParser.urlencoded({ extended: true }));
+// set static directory
 app.use(express.static("public"));
-
-// Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/Scraping-The-News", { useNewUrlParser: true });
-
-
-app.engine("handlebars", expresshdbrs({
-    defaultLayout: "main",
-    partialsDir: path.join(__dirname, "/views/layouts/partials")
-}));
+// Set Handlebars as the default templating engine
+app.engine("handlebars", exhdbrs({ handlebars: allowInsecurePrototypeAccess(_handlebars) }));
 app.set("view engine", "handlebars");
 
-db.on("error", function (error) {
-    console.log("Mongoose Error: ", error);
+
+
+// check connection status
+let db = mongoose.connection;
+db.on('error', (error) => {
+    console.log(`Connection error ${error}`);
 });
 
-db.once("open", function () {
-    console.log("Mongoose connection successful.");
-});
+require('./routes/routes.js')(app);
 
-app.listen(PORT, function () {
-    console.log("App running on PORT: " + PORT);
-})
+// start server
+app.listen(PORT, () => {
+    console.log(`App running on port ${PORT}`);
+});

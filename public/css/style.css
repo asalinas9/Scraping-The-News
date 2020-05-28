@@ -1,0 +1,19 @@
+.navbar {
+    background-color: red;
+}
+
+.jumbotron {
+    background: url(../img/mainbkgnd2.jpeg) no-repeat center center fixed; 
+    
+}
+
+.note-content {
+    width: 100%;
+    height: 100px;
+    overflow-y: scroll;
+    resize: none;
+}
+
+.material-icons {
+    color: rgb(45, 175, 71);
+}
