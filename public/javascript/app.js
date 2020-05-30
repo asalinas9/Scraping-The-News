@@ -54,8 +54,8 @@ $(() => {
                     <textarea name="note" class="note-content"></textarea>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" data-id="${data._id}" class="btn btn-primary btn-save-note">Save Note</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" data-id="${data._id}" class="btn bg-success text-white btn-save-note">Save Note</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>`
                 );
 
@@ -63,7 +63,7 @@ $(() => {
 
                 // if there is no note
                 if (totalNotes == 0) {
-                    let message = `<small class="text-muted">Leave a comment on the box below.</small>`;
+                    let message = `<small class="text-muted">Leave a comment in the box below.</small>`;
                     $('.modal-body').prepend(message);
                 }
                 // if there is/are note(s)

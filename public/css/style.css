@@ -1,3 +1,7 @@
+body {
+    background-color: rgb(139, 194, 124);
+}
+
 .navbar {
     background-color: rgb(139, 194, 124);
 }
@@ -33,3 +37,12 @@ h1 {
     resize: none;
 }
 
+.material-icons {
+    color: red;
+    
+}
+
+.list-group-item {
+    font-size: 15px;
+    font-family: monospace;
+}
