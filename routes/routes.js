@@ -46,8 +46,8 @@ module.exports = (app) => {
                 // use cheerio for shorthand selector $
                 let $ = cheerio.load(response.data);
 
-                $(".gs-c-promo-heading").each(function (i, element) {
-
+                $("a.gs-c-promo-heading").each(function (i, element) {
+                    console.log("Elements", element);
                     if ($(element).attr("href").includes("bbc."))
                         return;
                     let result = {};
@@ -139,7 +139,7 @@ module.exports = (app) => {
     // save new note
     app.post('/note/:id', (req, res) => {
         let id = req.params.id;
-
+        console.log("request Body", req.body);
         db.Note.create(req.body)
             .then((dbNote) => {
                 return db.Article.findOneAndUpdate({
