@@ -63,7 +63,7 @@ $(() => {
 
                 // if there is no note
                 if (totalNotes == 0) {
-                    let message = `<small class="text-muted">This article doesn't have any notes yet.</small>`;
+                    let message = `<small class="text-muted">Leave a comment on the box below.</small>`;
                     $('.modal-body').prepend(message);
                 }
                 // if there is/are note(s)
@@ -95,7 +95,7 @@ $(() => {
                 data: { body: content }
             })
                 .then((data) => {
-                    // clear textarea
+                    // clear text area
                     $(".note-content").val(" ");
                     // hide modal
                     $(".modal").modal("hide");

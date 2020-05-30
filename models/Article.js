@@ -9,7 +9,6 @@ let ArticleSchema = new Schema({
     },
     summary: {
         type: String,
-        required: true
     },
     timestamp: {
         type: Date,
