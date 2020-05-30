@@ -70,14 +70,14 @@ module.exports = (app) => {
                             console.log(dbArticle);
                         })
                         .catch((err) => {
-                            console.log(`\n error while saving to database: ${err}`);
+                            console.log(err);
                         });
                 });
 
                 res.redirect("/articles");
             })
             .catch((error) => {
-                console.log(`error while getting data from url: ${error}`);
+                console.log(error);
             });
     });
 
@@ -89,19 +89,6 @@ module.exports = (app) => {
 
                 // render page with articles found
                 res.render("index", articleObj);
-            })
-            .catch((err) => {
-                res.json(err);
-            });
-    });
-
-    // save article
-    app.put('/article/:id', (req, res) => {
-        let id = req.params.id;
-
-        db.Article.findByIdAndUpdate(id, { $set: { saved: true } })
-            .then((dbArticle) => {
-                res.json(dbArticle);
             })
             .catch((err) => {
                 res.json(err);
