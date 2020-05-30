@@ -12,9 +12,9 @@ I. Whenever a user visits the site, the app scrapes stories from bbc.com and dis
 
 II. Users should also are able to leave comments on the articles displayed and revisit them later. Users are also be able to delete comments left on articles. All stored comments should be visible to every user.
 
-![](img/main.png)
+![](public/img/main.png)
 
-![](img/notes.png)
+![](public/img/notes.png)
 
 ## Tech Used
 1. _MongoDB,Express, NodeJS_.
